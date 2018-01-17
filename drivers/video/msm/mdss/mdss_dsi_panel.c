@@ -26,6 +26,7 @@
 #include <linux/msm_mdp.h>
 #include <linux/panel_notifier.h>
 
+#include <linux/display_state.h>
 
 #include "mdss_dsi.h"
 #include "mdss_dba_utils.h"
@@ -35,6 +36,11 @@
 
 #define MDSS_PANEL_DEFAULT_VER 0xffffffffffffffff
 #define MDSS_PANEL_UNKNOWN_NAME "unknown"
+
+#ifdef CONFIG_TOUCHSCREEN_PREVENT_SLEEP
+#include <linux/input/prevent_sleep.h>
+#endif
+
 #define DT_CMD_HDR 6
 #define MIN_REFRESH_RATE 48
 #define DEFAULT_MDP_TRANSFER_TIME 14000
@@ -43,6 +49,12 @@
 #define VSYNC_DELAY msecs_to_jiffies(17)
 
 DEFINE_LED_TRIGGER(bl_led_trigger);
+
+bool display_on = true;
+bool is_display_on()
+{
+	return display_on;
+}
 
 void mdss_dsi_panel_pwm_cfg(struct mdss_dsi_ctrl_pdata *ctrl)
 {
@@ -957,6 +969,10 @@ u32 mdss_dsi_panel_forced_tx_mode_get(struct mdss_panel_info *pinfo)
 	return pinfo->forced_tx_mode_state;
 }
 
+#ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
+extern bool dt2w_scr_suspended;
+#endif
+
 static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 {
 	struct mdss_dsi_ctrl_pdata *ctrl = NULL;
@@ -967,11 +983,16 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 	char *dropbox_issue = NULL;
 	static int dropbox_count;
 	static int panel_recovery_retry;
+#ifdef CONFIG_TOUCHSCREEN_PREVENT_SLEEP
+	bool prevent_sleep = false;
+#endif
 
 	if (pdata == NULL) {
 		pr_err("%s: Invalid input data\n", __func__);
 		return -EINVAL;
 	}
+
+	display_on = true;
 
 	pinfo = &pdata->panel_info;
 	ctrl = container_of(pdata, struct mdss_dsi_ctrl_pdata,
@@ -1031,6 +1052,11 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 	}
 
 	panel_notify(PANEL_EVENT_DISPLAY_ON, pinfo);
+#ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
+       ts_get_prevent_sleep(prevent_sleep);
+       if (prevent_sleep)
+	       dt2w_scr_suspended = false;
+#endif
 
 end:
 	if (pinfo->forced_tx_mode_ftr_enabled)
@@ -1097,6 +1123,9 @@ static int mdss_dsi_panel_off(struct mdss_panel_data *pdata)
 {
 	struct mdss_dsi_ctrl_pdata *ctrl = NULL;
 	struct mdss_panel_info *pinfo;
+#ifdef CONFIG_TOUCHSCREEN_PREVENT_SLEEP
+	bool prevent_sleep = false;
+#endif
 
 	if (pdata == NULL) {
 		pr_err("%s: Invalid input data\n", __func__);
@@ -1128,6 +1157,12 @@ static int mdss_dsi_panel_off(struct mdss_panel_data *pdata)
 	}
 
 	panel_notify(PANEL_EVENT_DISPLAY_OFF, pinfo);
+	display_on = false;
+#ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
+       ts_get_prevent_sleep(prevent_sleep);
+       if (prevent_sleep)
+	       dt2w_scr_suspended = true;
+#endif
 
 end:
 	pr_debug("%s:-\n", __func__);
