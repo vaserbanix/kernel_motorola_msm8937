@@ -131,5 +131,5 @@ TRACE_EVENT(
 
 /* This part must be outside protection */
 #undef TRACE_INCLUDE_PATH
-#define TRACE_INCLUDE_PATH .
+#define TRACE_INCLUDE_PATH /home/vasy/kernel-montana/drivers/platform/msm/ipa/ipa_v2/
 #include <trace/define_trace.h>

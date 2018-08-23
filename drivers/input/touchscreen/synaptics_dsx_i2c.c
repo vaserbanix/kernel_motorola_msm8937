@@ -2964,10 +2964,10 @@ static void synaptics_dsx_sensor_state(struct synaptics_rmi4_data *rmi4_data,
 static void synaptics_dsx_pm_qos(struct synaptics_rmi4_data *rmi4_data,
 	int update)
 {
-	if (irq_can_set_affinity(rmi4_data->irq))
+	/*if (irq_can_set_affinity(rmi4_data->irq))
 		rmi4_data->pm_qos_irq.type = PM_QOS_REQ_AFFINE_IRQ;
 	else
-		rmi4_data->pm_qos_irq.type = PM_QOS_REQ_ALL_CORES;
+		rmi4_data->pm_qos_irq.type = PM_QOS_REQ_ALL_CORES;*/
 
 	switch (update) {
 	case PM_REMOVE:
@@ -7395,7 +7395,7 @@ static int synaptics_rmi4_probe(struct i2c_client *client,
 		}
 	}
 
-	rmi4_data->pm_qos_irq.irq = rmi4_data->irq;
+	/*rmi4_data->pm_qos_irq.irq = rmi4_data->irq;*/
 	synaptics_dsx_sensor_ready_state(rmi4_data, true);
 
 	rmi4_data->rmi_reboot.notifier_call = rmi_reboot;

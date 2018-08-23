@@ -553,7 +553,7 @@
 /* GPU overrides */
 &msm_gpu {
 
-	qcom,restrict-pwrlevel = <1>;
+	/* qcom,restrict-pwrlevel = <1>; */
 	/delete-property/qcom,gpu-speed-bin;
 	qcom,gpu-speed-bin = <0x0174 0x80000000 31>;
 
@@ -578,7 +578,7 @@
 			/* SUPER TURBO */
 			qcom,gpu-pwrlevel@0 {
 				reg = <0>;
-				qcom,gpu-freq = <475000000>;
+				qcom,gpu-freq = <550000000>;
 				qcom,bus-freq = <10>;
 				qcom,bus-min = <10>;
 				qcom,bus-max = <10>;
@@ -650,7 +650,7 @@
 			/* SUPER TURBO */
 			qcom,gpu-pwrlevel@0 {
 				reg = <0>;
-				qcom,gpu-freq = <500000000>;
+				qcom,gpu-freq = <550000000>;
 				qcom,bus-freq = <10>;
 				qcom,bus-min = <10>;
 				qcom,bus-max = <10>;
