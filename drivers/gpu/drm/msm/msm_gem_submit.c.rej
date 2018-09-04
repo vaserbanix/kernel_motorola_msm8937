@@ -1,0 +1,12 @@
+--- drivers/gpu/drm/msm/msm_gem_submit.c
++++ drivers/gpu/drm/msm/msm_gem_submit.c
+@@ -90,8 +90,7 @@
+ 			pagefault_disable();
+ 		}
+ 
+-		if ((submit_bo.flags & ~MSM_SUBMIT_BO_FLAGS) ||
+-			!(submit_bo.flags & MSM_SUBMIT_BO_FLAGS)) {
++		if (submit_bo.flags & ~MSM_SUBMIT_BO_FLAGS) {
+ 			DRM_ERROR("invalid flags: %x\n", submit_bo.flags);
+ 			ret = -EINVAL;
+ 			goto out_unlock;

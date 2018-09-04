@@ -1,0 +1,12 @@
+--- drivers/net/phy/phy.c
++++ drivers/net/phy/phy.c
+@@ -509,9 +509,6 @@
+ 	if (phydev->state > PHY_UP && phydev->state != PHY_HALTED)
+ 		phydev->state = PHY_UP;
+ 	mutex_unlock(&phydev->lock);
+-
+-	/* Now we can run the state machine synchronously */
+-	phy_state_machine(&phydev->state_queue.work);
+ }
+ 
+ /**

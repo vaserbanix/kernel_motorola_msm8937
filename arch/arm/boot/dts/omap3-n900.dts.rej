@@ -1,0 +1,11 @@
+--- arch/arm/boot/dts/omap3-n900.dts
++++ arch/arm/boot/dts/omap3-n900.dts
+@@ -582,8 +582,6 @@
+ 	vmmc_aux-supply = <&vsim>;
+ 	bus-width = <8>;
+ 	non-removable;
+-	no-sdio;
+-	no-sd;
+ };
+ 
+ &mmc3 {

@@ -1,0 +1,10 @@
+--- arch/powerpc/platforms/pseries/reconfig.c
++++ arch/powerpc/platforms/pseries/reconfig.c
+@@ -112,6 +112,7 @@
+ 
+ 	of_detach_node(np);
+ 	of_node_put(parent);
++	of_node_put(np); /* Must decrement the refcount */
+ 	return 0;
+ }
+ 

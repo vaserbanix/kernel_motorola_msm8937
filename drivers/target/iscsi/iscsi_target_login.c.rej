@@ -1,0 +1,12 @@
+--- drivers/target/iscsi/iscsi_target_login.c
++++ drivers/target/iscsi/iscsi_target_login.c
+@@ -1492,9 +1492,5 @@
+ 			break;
+ 	}
+ 
+-	while (!kthread_should_stop()) {
+-		msleep(100);
+-	}
+-
+ 	return 0;
+ }

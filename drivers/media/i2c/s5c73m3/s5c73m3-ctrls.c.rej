@@ -1,0 +1,11 @@
+--- drivers/media/i2c/s5c73m3/s5c73m3-ctrls.c
++++ drivers/media/i2c/s5c73m3/s5c73m3-ctrls.c
+@@ -211,7 +211,7 @@
+ 	}
+ 
+ 	if ((ctrl->val ^ ctrl->cur.val) & V4L2_LOCK_FOCUS)
+-		ret = s5c73m3_af_run(state, !af_lock);
++		ret = s5c73m3_af_run(state, ~af_lock);
+ 
+ 	return ret;
+ }

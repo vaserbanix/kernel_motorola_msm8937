@@ -1,0 +1,8 @@
+--- arch/unicore32/include/asm/Kbuild
++++ arch/unicore32/include/asm/Kbuild
+@@ -63,5 +63,4 @@
+ generic-y += unaligned.h
+ generic-y += user.h
+ generic-y += vga.h
+-generic-y += word-at-a-time.h
+ generic-y += xor.h

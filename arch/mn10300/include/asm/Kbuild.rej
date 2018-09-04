@@ -1,0 +1,7 @@
+--- arch/mn10300/include/asm/Kbuild
++++ arch/mn10300/include/asm/Kbuild
+@@ -10,4 +10,3 @@
+ generic-y += scatterlist.h
+ generic-y += sections.h
+ generic-y += trace_clock.h
+-generic-y += word-at-a-time.h

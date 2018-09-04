@@ -1,0 +1,11 @@
+--- net/core/dev.c
++++ net/core/dev.c
+@@ -2436,7 +2436,7 @@
+ {
+ 	if (tx_path)
+ 		return skb->ip_summed != CHECKSUM_PARTIAL &&
+-		       skb->ip_summed != CHECKSUM_UNNECESSARY;
++		       skb->ip_summed != CHECKSUM_NONE;
+ 
+ 	return skb->ip_summed == CHECKSUM_NONE;
+ }

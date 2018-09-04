@@ -1,0 +1,8 @@
+--- arch/metag/include/asm/Kbuild
++++ arch/metag/include/asm/Kbuild
+@@ -55,5 +55,4 @@
+ generic-y += unaligned.h
+ generic-y += user.h
+ generic-y += vga.h
+-generic-y += word-at-a-time.h
+ generic-y += xor.h

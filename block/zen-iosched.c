@@ -3,6 +3,7 @@
  * Primarily based on Noop, deadline, and SIO IO schedulers.
  *
  * Copyright (C) 2012 Brandon Berhent <bbedward@gmail.com>
+
  *
  * FCFS, dispatches are back-inserted, deadlines ensure fairness.
  * Should work best with devices where there is no travel delay.
@@ -18,6 +19,7 @@ enum zen_data_dir { ASYNC, SYNC };
 
 static const int sync_expire  = HZ / 2;    /* max time before a sync is submitted. */
 static const int async_expire = 5 * HZ;    /* ditto for async, these limits are SOFT! */
+
 static const int fifo_batch = 1;
 
 struct zen_data {
@@ -91,7 +93,9 @@ zen_expired_request(struct zen_data *zdata, int ddir)
                 return NULL;
 
         rq = rq_entry_fifo(zdata->fifo_list[ddir].next);
+
         if (time_after(jiffies, rq->fifo_time))
+
                 return rq;
 
         return NULL;
@@ -161,6 +165,7 @@ static int zen_init_queue(struct request_queue *q, struct elevator_type *e)
 	struct zen_data *zdata;
 	struct elevator_queue *eq;
 
+
 	eq = elevator_alloc(q, e);
 	if (!eq)
 		return -ENOMEM;
@@ -172,15 +177,18 @@ static int zen_init_queue(struct request_queue *q, struct elevator_type *e)
 	}
 	eq->elevator_data = zdata;
 
+
 	INIT_LIST_HEAD(&zdata->fifo_list[SYNC]);
 	INIT_LIST_HEAD(&zdata->fifo_list[ASYNC]);
 	zdata->fifo_expire[SYNC] = sync_expire;
 	zdata->fifo_expire[ASYNC] = async_expire;
 	zdata->fifo_batch = fifo_batch;
 
+
 	spin_lock_irq(q->queue_lock);
 	q->elevator = eq;
 	spin_unlock_irq(q->queue_lock);
+
 	return 0;
 }
 
@@ -285,4 +293,6 @@ module_exit(zen_exit);
 MODULE_AUTHOR("Brandon Berhent");
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Zen IO scheduler");
+
 MODULE_VERSION("1.0");
+

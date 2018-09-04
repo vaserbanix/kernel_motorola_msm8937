@@ -185,6 +185,33 @@ config CPU_FREQ_DEFAULT_GOV_HYPER
  	bool "hyper"
  	select CPU_FREQ_GOV_HYPER
 
+config CPU_FREQ_DEFAULT_GOV_LIONHEART
+            bool "lionheart"
+            select CPU_FREQ_GOV_LIONHEART
+            help
+              Use the CPUFreq governor 'lionheart' as default.
+
+config CPU_FREQ_DEFAULT_GOV_DARKNESS
+	bool "darkness"
+  	select CPU_FREQ_GOV_DARKNESS
+  	help
+
+config CPU_FREQ_DEFAULT_GOV_ALUCARD
+  	bool "alucard"
+  	select CPU_FREQ_GOV_ALUCARD
+  	help
+
+config CPU_FREQ_DEFAULT_GOV_BIOSHOCK
+	bool "BioShock"
+	select CPU_FREQ_GOV_BIOSHOCK
+	help
+	  Default governor of BioShock kernel
+
+config CPU_FREQ_DEFAULT_GOV_SMARTASS2
+  	bool "smartassV2"
+  	select CPU_FREQ_GOV_SMARTASS2
+  	help
+
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -277,6 +304,7 @@ config CPU_FREQ_GOV_LIONHEART
              If in doubt, say N.
 
 config CPU_FREQ_GOV_SMARTASS2
+
   	tristate "'smartass2' cpufreq governor"
   	depends on CPU_FREQ
   	help

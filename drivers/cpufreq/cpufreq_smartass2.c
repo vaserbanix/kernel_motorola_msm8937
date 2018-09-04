@@ -650,7 +650,11 @@ static ssize_t store_min_cpu_load(struct kobject *kobj, struct attribute *attr, 
 
 #define define_global_rw_attr(_name)		\
 static struct global_attr _name##_attr =	\
+<<<<<<< HEAD
 	__ATTR(_name, 0644, show_##_name, _store_##_name) 
+=======
+	__ATTR(_name, 0644, show_##_name, store_##_name)
+>>>>>>> 9018e27eb18f30a3da41454f7e5a6e0c2d15f638
 
 define_global_rw_attr(debug_mask);
 define_global_rw_attr(up_rate_us);
@@ -681,7 +685,11 @@ static struct attribute * smartass_attributes[] = {
 
 static struct attribute_group smartass_attr_group = {
 	.attrs = smartass_attributes,
+<<<<<<< HEAD
 	.name = "smartass2",
+=======
+	.name = "smartassV2",
+>>>>>>> 9018e27eb18f30a3da41454f7e5a6e0c2d15f638
 };
 
 static int cpufreq_governor_smartass(struct cpufreq_policy *new_policy,
