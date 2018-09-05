@@ -1,7 +1,0 @@
---- arch/s390/include/asm/Kbuild
-+++ arch/s390/include/asm/Kbuild
-@@ -7,4 +7,3 @@
- generic-y += preempt.h
- generic-y += scatterlist.h
- generic-y += trace_clock.h
--generic-y += word-at-a-time.h

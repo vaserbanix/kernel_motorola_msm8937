@@ -1,8 +1,0 @@
---- arch/um/include/asm/Kbuild
-+++ arch/um/include/asm/Kbuild
-@@ -27,5 +27,4 @@
- generic-y += switch_to.h
- generic-y += topology.h
- generic-y += trace_clock.h
--generic-y += word-at-a-time.h
- generic-y += xor.h

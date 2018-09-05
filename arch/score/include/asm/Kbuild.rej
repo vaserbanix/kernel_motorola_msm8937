@@ -1,7 +1,0 @@
---- arch/score/include/asm/Kbuild
-+++ arch/score/include/asm/Kbuild
-@@ -14,4 +14,3 @@
- generic-y += trace_clock.h
- generic-y += xor.h
- generic-y += serial.h
--generic-y += word-at-a-time.h

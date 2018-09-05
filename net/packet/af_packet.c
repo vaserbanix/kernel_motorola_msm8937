@@ -2660,6 +2660,9 @@ static int packet_do_bind(struct sock *sk, const char *name, int ifindex,
 	int ret = 0;
 	bool unlisted = false;
 
+	if (!po->running)
+		return -EINVAL;
+
 	if (po->fanout)
 		return -EINVAL;
 
