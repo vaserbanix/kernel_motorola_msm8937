@@ -150,7 +150,7 @@
 			#size-cells = <0>;
 
 			compatible = "qcom,gpu-pwrlevels";
-			qcom,initial-pwrlevel = <2>;
+			qcom,initial-pwrlevel = <3>;
 
 			/* TURBO */
             qcom,gpu-pwrlevel@0 {
@@ -165,7 +165,7 @@
 			/* NOM+ */
 			qcom,gpu-pwrlevel@1 {
 				reg = <1>;
-				qcom,gpu-freq = <560000000>;
+				qcom,gpu-freq = <550000000>;
 				qcom,bus-freq = <10>;
 				qcom,bus-min = <8>;
 				qcom,bus-max = <10>;
@@ -174,7 +174,7 @@
 			/* NOM */
 			qcom,gpu-pwrlevel@2 {
 				reg = <2>;
-				qcom,gpu-freq = <510000000>;
+				qcom,gpu-freq = <450000000>;
 				qcom,bus-freq = <9>;
 				qcom,bus-min = <6>;
 				qcom,bus-max = <10>;

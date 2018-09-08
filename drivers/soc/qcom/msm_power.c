@@ -38,11 +38,11 @@
 
 static unsigned int cur_cpu_freq[NR_CPUS];
 static unsigned int max_cpu_freq;
-static unsigned int cpu_freq_threshold = 1400000;
+static unsigned int cpu_freq_threshold = 1500000;
 static unsigned int cpu_ddr_vote = DDR_HI_FREQ;
 static unsigned int system_max_cpu_freq;
 static unsigned int cur_gpu_freq;
-static unsigned int gpu_freq_threshold = 500000;
+static unsigned int gpu_freq_threshold = 650000;
 static unsigned int gpu_ddr_vote = DDR_LO_FREQ;
 static unsigned int system_max_gpu_freq;
 static unsigned int max_ddr_freq = DDR_HI_FREQ;

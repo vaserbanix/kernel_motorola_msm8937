@@ -124,7 +124,7 @@ static void __ref hotplug_func(struct work_struct *work)
 	}
 
 	for_each_online_cpu(cpu)
-		loadavg += cpufreq_quick_get_util(cpu);
+		/*loadavg += cpufreq_quick_get_util(cpu);*/
 
 	loadavg /= num_online_cpus();
 	
@@ -392,13 +392,13 @@ static ssize_t store_down_count_max(struct device *dev,
 	return count;
 }
 
-static DEVICE_ATTR(enabled, 644, show_enable_hotplug, store_enable_hotplug);
-static DEVICE_ATTR(up_threshold, 644, show_up_threshold, store_up_threshold);
-static DEVICE_ATTR(plug_all, 644, show_plug_all, store_plug_all);
-static DEVICE_ATTR(max_online, 644, show_max_online, store_max_online);
-static DEVICE_ATTR(suspend_max_online, 644, show_suspend_max_online, store_suspend_max_online);
-static DEVICE_ATTR(up_count_max, 644, show_up_count_max, store_up_count_max);
-static DEVICE_ATTR(down_count_max, 644, show_down_count_max, store_down_count_max);
+static DEVICE_ATTR(enabled, 0644, show_enable_hotplug, store_enable_hotplug);
+static DEVICE_ATTR(up_threshold, 0644, show_up_threshold, store_up_threshold);
+static DEVICE_ATTR(plug_all, 0644, show_plug_all, store_plug_all);
+static DEVICE_ATTR(max_online, 0644, show_max_online, store_max_online);
+static DEVICE_ATTR(suspend_max_online, 0644, show_suspend_max_online, store_suspend_max_online);
+static DEVICE_ATTR(up_count_max, 0644, show_up_count_max, store_up_count_max);
+static DEVICE_ATTR(down_count_max, 0644, show_down_count_max, store_down_count_max);
 
 static struct attribute *msm_sleeper_attrs[] = {
 	&dev_attr_up_threshold.attr,
